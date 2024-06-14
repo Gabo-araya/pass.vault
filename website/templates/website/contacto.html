@@ -1,0 +1,80 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block title %} {{ page }} {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+            {% include 'website/header_contacto.html' %}
+
+
+            <!-- Contacto -->
+            <section class="bg-light">
+                <div class="container py-5 px-5">
+                    <div class="text-center">
+                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">{{ page }} </span></h1>
+                        
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-11 col-xl-9 col-xxl-8">
+                            <div class="card shadow border-0 rounded-4 ">
+                                <div class="card-body p-5">
+
+                                    {{ page_content.0.resumen|safe }}
+
+                                        <form action="" method="POST" role="form" class="php-email-form">
+                                            {% csrf_token %}
+                                            {% if success_message%}
+                                                <div class="alert alert-success">
+                                                <i class="bi bi-send-check-fill"></i>
+                                                Su mensaje ha sido enviado. Gracias!
+                                                </div>
+                                            {% endif %}
+                                            {% if error_message%}
+                                                <div class="alert alert-danger">
+                                                <i class="bi bi-shield-fill-exclamation"></i>
+                                                Ocurrió un error. <br /> 
+                                                Complete todos los campos correctamente.
+                                                </div>
+                                            {% endif %}
+                                            <div class="row">
+                                                <div class="form-group col-md-6">
+                                                <label for="nombre">Nombre</label>
+                                                <input type="text" class="form-control" name="nombre" id="nombre" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                <label for="email">Correo electrónico</label>
+                                                <input type="email" class="form-control" name="email" id="email" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="asunto">Asunto</label>
+                                                <input type="text" class="form-control" name="asunto" id="asunto" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="mensaje">Mensaje</label>
+                                                <textarea class="form-control" name="mensaje" id="mensaje" rows="10" required></textarea>
+                                            </div>
+                                            <br />
+                                            <div class="text-center">
+                                                <button class="btn btn-gradient-primary-to-secondary btn-round  px-4 me-sm-3" type="submit">
+                                                    Enviar mensaje &nbsp; <i class="bi bi-send"></i> 
+                                                </button>
+                                            </div>
+                                        </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

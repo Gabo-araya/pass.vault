@@ -1,0 +1,72 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block title %} {{ page }} {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+        <!-- Formulario de creación de password -->
+        <section class="bg-gradient-primary-to-secondary-diagonal py-5">
+            <div class="container px-5">
+
+                {% if proyecto_destacado %}
+                    {% for item in proyecto_destacado %}
+                        <div class="row gx-5 align-items-center justify-content-center shadow rounded-4 bg-white border">
+                            <div class="col-xl-5 col-xxl-6 d-xl-block text-center py-3">
+                                <a href="{% url 'proyecto' item.slug %}">
+                                {% if item.imagen_grande %}
+                                    <img src="{{ item.imagen_grande.url }}" class="img img-thumbnail card-img-top" alt="{{ item.nombre }}">
+                                {% elif item.imagen %}
+                                    <img src="{{ item.imagen.url }}" class="img img-thumbnail card-img-top" alt="{{ item.nombre }}">
+                                {% else %}
+                                    <img src="{{ info_configuracion.imagen_default.url }}" class="img img-thumbnail" alt="{{ item.nombre }}">
+                                {% endif %}
+                                </a>
+                            </div>
+                            <div class="col-lg-8 col-xl-7 col-xxl-6">
+                                <div class="my-5 text-center text-xl-start">
+                                    <strong class="d-inline-block mb-2 text-primary">{{ item.fk_categoria_proyecto }}</strong>
+                                    <h3 class="mb-0">
+                                        {{ item.nombre }}
+                                    </h3>
+                                    <hr />
+
+                                    <div class="card-text mb-auto">{{ item.resumen|safe }}</div>
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <a href="{% url 'proyecto' item.slug %}" class="btn btn-outline-dark btn-gradient-primary-to-secondary  btn-round btn-lg px-4 float-right" title="{{ item.nombre }}">
+                                            Revisar proyecto &nbsp;<i class="bi bi-arrow-right-circle"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <br />
+                <div class="text-center pt-5">
+                    <a class="btn btn-outline-dark btn-round btn-gradient-primary-to-secondary btn-lg px-4" href="{% url 'portafolio'%}">Ver Portafolio completo &nbsp;<i class="bi bi-arrow-right-circle"></i></a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Call to action section-->
+        <!--section class="py-5 bg-secondary bg-gradient-primary-to-secondary-diagonal text-white">
+            <div class="container px-5 my-5">
+                <div class="text-center">
+                    <h2 class="display-4 fw-bolder mb-4">Construyamos algo juntos</h2>
+                    <a class="btn btn-outline-light btn-round btn-lg px-5 py-3 fs-6 fw-bolder" href="{% url 'contacto'%}">
+                        Escríbeme &nbsp; <i class="bi bi-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </section-->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

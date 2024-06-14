@@ -1,7 +1,6 @@
 from django.apps import AppConfig
 
 
-class WebsiteConfig(AppConfig):
+class PanelConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'website'
-    verbose_name = 'Sitio Web'
+    name = 'panel'

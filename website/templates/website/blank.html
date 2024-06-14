@@ -1,0 +1,846 @@
+{% extends "website/base.html" %}
+{% load static %}
+{% block title %} {{ page }} {% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+            <div class="py-5 hidden" id="info" ></div>
+            <!-- Blank -->
+            <section class="py-5">
+                <div class="container px-5 mb-5">
+                    <div class="mb-5">
+                        <h3 class="text-center display-5 fw-bolder mb-0"><span class="text-gradient d-inline">{{ page }} </span></h3>
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-11 col-xl-9 col-xxl-8">
+                            <div class="card shadow border-0 rounded-4 mb-5">
+                                <div class="card-body p-5">
+                                    <div class="text-muted">
+                                        {{ page_content.0.resumen|safe }}
+                                    </div>
+                                    <div class="text-muted">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+                                        Fugit dolorum itaque qui unde quisquam consequatur autem. 
+                                        Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa! 
+                                        Praesentium ratione atque dolorem?
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Call to action section-->
+            <section class="py-5 bg-secondary bg-gradient-primary-to-secondary text-white">
+                <div class="container px-5 my-5">
+                    <div class="text-center">
+                        <h2 class="display-4 fw-bolder mb-4">Construyamos algo juntos</h2>
+                        <a class="btn btn-outline-light btn-round btn-lg px-5 py-3 fs-6 fw-bolder" href="{% url 'contacto'%}">
+                            Escríbeme &nbsp; <i class="bi bi-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+            <!-- Blog -->
+            <section class="">
+                <div class="container px-5">
+
+                    <div class="text-center my-5">
+                        <h1 class="display-5 fw-bolder "><span class="text-gradient d-inline">{{ page }} </span></h1>
+                        {{ page_content.0.resumen|safe }}
+                    </div>
+                    <div class="row pt-5">
+                        
+                        {% if object_list %}
+                            {% for item in object_list %}
+                            <!-- articulo -->
+                            <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                                <div class="h-100 proy">
+                                    <a href="{% url 'articulo' item.slug %}">
+                                    {% if item.imagen_grande %}
+                                        <img class="img img-thumbnail card-img-top img-fluid shadow rounded-4" src="{{ item.imagen_grande.url }}" alt="{{ item.titulo }}" />
+                                    {% endif %}
+                                    </a>
+
+                                    <div class="proy-contents">
+                                        <h2 class="mb-0"><a href="{% url 'proyecto' item.slug %}">{{ item.nombre }}</a></h2>
+                                        <span class="meta d-block mb-3">{{ item.fk_categoria }}</span>
+                                        
+                                        {% if item.resumen %}
+                                            <div class="card-text">
+                                                {{ item.resumen|safe }}
+                                            </div>
+                                        {% endif %}
+
+                                        <div class="text-center mb-5">
+                                            <a href="{% url 'proyecto' item.slug %}" class="btn btn-gradient-primary-to-secondary btn-round btn-lg px-4" title="{{ item.nombre }}">
+                                                Revisar artículo &nbsp;<i class="bi bi-arrow-right-circle"></i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+                        {% else %}
+                        No hay elementos
+                        {% endif %}
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Buscador -->
+            <section class="pt-5">
+                <div class="container px-5">
+                    <div class="row">
+                        <div class="col-md-6 mx-auto mx-5 my-5 mb-4 mb-xl-0">
+                            <aside class="bg-gradient-primary-to-secondary rounded-4 p-4 p-sm-5 mt-5">
+                                <div class="align-items-center justify-content-between text-center">
+                                    <form action="{% url 'buscar' %}" method="POST" class="form-search d-flexmb-3">
+                                        {% csrf_token %}
+                                        <div class="input-group mb-2">
+                                            <input type="text" id="nombre" name="nombre" class="form-control px-4" placeholder="Buscar otra cosa..." aria-label="Buscador">
+                                            <button class="btn btn-outline-light" type="submit">
+                                                <i class="bi bi-search"></i> &nbsp; 
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+
+        <!-- About Section-->
+        <section class="bg-light py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-xxl-8">
+                        <div class="text-center my-5">
+                            <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
+                            <p class="lead fw-light mb-4">My name is Gabriel Araya.</p>
+                            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dolorum itaque qui unde quisquam consequatur autem. Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa! Praesentium ratione atque dolorem?</p>
+                            <div class="d-flex justify-content-center fs-2 gap-4">
+                                <a class="text-gradient" href="#!"><i class="bi bi-twitter"></i></a>
+                                <a class="text-gradient" href="#!"><i class="bi bi-linkedin"></i></a>
+                                <a class="text-gradient" href="#!"><i class="bi bi-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+            <!-- Actividades Académicas -->
+            <section class="">
+                <div class="container px-5">
+                    <div class="text-center my-5">
+                        <h1 class="display-5 fw-bolder "><span class="text-gradient d-inline">Actividades Académicas </span></h1>
+                        {{ page_content.0.resumen|safe }}
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col">
+                            {% if actividades_academicas %}
+                                {% for item in actividades_academicas %}
+                                <!-- Blog Post-->
+
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-md-3">
+                                            <div class="card-text text-center my-2 mx-2">
+                                                {% if item.imagen %}
+                                                <img class="img img-thumbnail card-img-top img-fluid shadow" src="{{ item.imagen.url }}" alt="{{ item.titulo }}" />
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="card-body small">
+                                                <h3 class="card-title">{{ item.nombre }}</h3>
+                                                <div class="my-3">
+                                                    {{ item.institucion }}  
+                                                    {% if item.ubicacion %}
+                                                        | {{ item.ubicacion }}
+                                                    {% endif %}
+                                                    {% if item.fecha_inicio %}
+                                                        | {{ item.fecha_inicio|date:'M Y' }} - 
+                                                    {% endif %}
+                                                    {% if item.sin_finalizar %}
+                                                        <span class="badge badge-success rounded-pill">
+                                                            <i class="bi bi-check-circle me-1"></i> &nbsp; Presente
+                                                        </span>
+                                                    {% else %}
+                                                        {{ item.fecha_fin|date:'M Y' }}
+                                                    {% endif %}
+                                                </div>
+
+
+
+                                                {% if item.fk_area_interes.all %}
+                                                    <div class="mb-1 text-muted"><strong>Modo de estudio:</strong> 
+                                                        <span class="badge badge-primary rounded-pill">
+                                                            {{ item.modo_estudio }}
+                                                        </span>
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if item.fk_area_interes.all %}
+                                                    <div class="mb-1 text-muted"><strong>Áreas de interés:</strong> 
+                                                        {% for area in item.fk_area_interes.all %}
+                                                            <span class="badge badge-success rounded-pill">
+                                                                {{ area }}
+                                                            </span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if item.fk_tecnologias.all %}
+                                                    <div class="mb-1 text-muted"><strong>Tecnologías:</strong> 
+                                                        {% for tecnologia in item.fk_tecnologias.all %}
+                                                            <span class="badge badge-info rounded-pill">
+                                                            {{ tecnologia }} 
+                                                            </span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if item.fk_software.all %}
+                                                    <div class="mb-1 text-muted"><strong>Software:</strong> 
+                                                        {% for software in item.fk_software.all %}
+                                                            <span class="badge badge-rose rounded-pill">
+                                                                {{ software }}
+                                                            </span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+
+                                                
+                                                {% if item.resumen %}
+                                                    <div class="card-text text-muted">
+                                                        {{ item.resumen|safe }}
+                                                    </div>
+                                                {% endif %}
+
+                                                <div class="card-text">
+                                                    {{ item.contenido|safe }}
+                                                </div>
+
+                                                {% if item.descripcion %}
+                                                    <div class="card-text">
+                                                        <h4 class="card-title">Descripción</h4>
+                                                        {{ item.descripcion|safe }}
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if item.desafios %}
+                                                    <div class="card-text">
+                                                        <h4 class="card-title">Desafíos</h4>
+                                                        {{ item.desafios|safe }}
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if item.aprendizajes %}
+                                                    <div class="card-text">
+                                                        <h4 class="card-title">Aprendizajes</h4>
+                                                        {{ item.aprendizajes|safe }}
+                                                    </div>
+                                                {% endif %}
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {% endfor %}
+
+                            {% else %}
+                            No hay elementos
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+                    <!-- Buscador -->
+                    <section class="pb-3">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 mx-auto">
+                                    <div class="mx-5 my-5 mb-4 mb-xl-0">
+                                        <aside class="bg-gradient-primary-to-secondary rounded-4 p-4 p-sm-5 mt-5">
+                                            <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                                                <div class="mb-4 mb-xl-0">
+                                                    <div class="fs-3 fw-bold text-white">Buscador!</div>
+                                                    <div class="text-white-50"></div>
+                                                </div>
+                                                <div class="ms-xl-4">
+                                                    <form action="{% url 'buscar' %}" method="POST" class="form-search d-flexmb-3">
+                                                        {% csrf_token %}
+                                                        <div class="input-group mb-2">
+                                                            <input type="text" id="nombre" name="nombre" class="form-control px-4" placeholder="Buscar" aria-label="Buscador">
+                                                            <button class="btn btn-outline-light" type="submit">
+                                                                <i class="bi bi-search"></i> &nbsp; 
+                                                            </button>
+
+                                                        </div>
+                                                    </form>
+                                                    <div class="small text-white-50"></div>
+                                                </div>
+                                            </div>
+                                        </aside>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+
+            <!-- Blog -->
+            <section class="">
+                <div class="container px-5">
+                    <div class="text-center my-5">
+                        <h1 class="display-5 fw-bolder "><span class="text-gradient d-inline">{{ page }} </span></h1>
+                        {{ page_content.0.resumen|safe }}
+                    </div>
+
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-11 col-xl-9 col-xxl-8">
+                        {% if object_list %}
+                            {% for item in object_list %}
+                            <!-- Blog Post-->
+                            <div class="card shadow border-0 rounded-4 mb-5">
+                                <div class="card-body p-5">
+                                    <div class="row align-items-center gx-5">
+                                        <div class="col text-center text-lg-start mb-5 mb-lg-0">
+                                            <div class=" ">
+                                                <a href="{% url 'articulo' item.slug %}">
+                                                    {% if item.imagen %}
+                                                        <img class="img img-thumbnail card-img-top shadow border-0 rounded-4" src="{{ item.imagen.url }}" alt="{{ item.titulo }}" />
+                                                    {% endif %}
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            {% if item.fk_categoria %}
+                                                <strong class="d-inline-block mb-2 text-gray">{{ item.fk_categoria }}</strong>
+                                            {% endif %}
+                                            {% if item.titulo %}
+                                                <h2 class="card-title h4">
+                                                    {{ item.titulo }}
+                                                </h2>
+                                            {% elif item.nombre %}
+                                                <h2 class="card-title h4">
+                                                    {{ item.nombre }}
+                                                </h2>
+                                            {% endif %}
+
+                                                <hr />
+                                            <!-- Slug: {{ item.nombre }} -->
+                                            {% if item.fecha %}
+                                                <div class="d-block d-flex align-items-center my-2">
+                                                    <span class="bi bi-calendar3"></span> &nbsp;&nbsp;
+                                                    <span class="text-muted caption">{{ item.fecha }}</span>
+                                                </div>
+                                            {% endif %}
+                                            {% if item.periodo %}
+                                                <div class="d-block d-flex align-items-center my-2">
+                                                    <span class="bi bi-calendar3"></span> &nbsp;&nbsp;
+                                                    <span class="text-muted caption">{{ item.periodo }}</span>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if item.resumen %}
+                                                <div class="card-text">
+                                                    {{ item.resumen|safe }}
+                                                </div>
+                                            {% endif %}
+
+                                            {% if item.fk_area_interes.all %}
+                                            <div class="mb-1 text-muted"><strong>Áreas de interés:</strong> 
+                                                {% for area in item.fk_area_interes.all %}{{ area }} / {% endfor %}
+                                            </div>
+                                            {% endif %}
+
+                                            {% if item.fk_tecnologias.all %}
+                                            <div class="mb-1 text-muted"><strong>Tecnologías:</strong> 
+                                                {% for tecnologia in item.fk_tecnologias.all %}{{ tecnologia }} / {% endfor %}
+                                            </div>
+                                            {% endif %}
+
+                                            {% if item.fk_software.all %}
+                                            <div class="mb-1 text-muted"><strong>Software:</strong> 
+                                                {% for software in item.fk_software.all %}{{ software }} / {% endfor %}
+                                            </div>
+                                            {% endif %}
+
+                                            
+                                            <div class="d-grid d-md-flex justify-content-md-end mt-4">
+                                                <a href="{% url 'articulo' item.slug %}" class="btn btn-gradient-primary-to-secondary btn-round btn-lg px-4 float-right" title="{{ item.nombre }}">
+                                                    Leer más &nbsp;<i class="bi bi-arrow-right-circle"></i>
+                                                </a>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {% endfor %}
+
+                        {% else %}
+                        No hay elementos
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+
+        <!-- Otra Seccion -->
+        <section class="py-5 bg-primary bg-gradient text-white">
+            <div class="container py-5 px-5 text-center">
+                <h1 class="fw-bolder">Welcome to Scrolling Nav</h1>
+                <p class="lead">A functional Bootstrap 5 boilerplate for one page scrolling websites</p>
+                <a class="btn btn-lg btn-light" href="#about">Start scrolling!</a>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- Call to action-->
+        <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+            <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                <div class="mb-4 mb-xl-0">
+                    <div class="fs-3 fw-bold text-white">New products, delivered to you.</div>
+                    <div class="text-white-50">Sign up for our newsletter for the latest updates.</div>
+                </div>
+                <div class="ms-xl-4">
+                    <div class="input-group mb-2">
+                        <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter">
+                        <button class="btn btn-outline-light" id="button-newsletter" type="button">Sign up</button>
+                    </div>
+                    <div class="small text-white-50">We care about privacy, and will never share your data.</div>
+                </div>
+            </div>
+        </aside>
+
+
+
+        <section class="section">
+            <div class="container px-5">
+                <!-- col-12 -->
+                <div class="row">
+                    <div class="col-md-12 ml-auto mr-auto">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-12</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+        
+        
+                <!-- col-2 x 6-->
+                <div class="row">
+                    <div class="col-md-12 ml-auto mr-auto">
+                        <div class="row">
+                            <div class="col-md-2 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-2</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-2 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-2</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-2 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-2</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-2 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-2</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-2 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-2</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-2 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-2</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+        
+        
+                <!-- col-3 x 4-->
+                <div class="row">
+                    <div class="col-md-12 ml-auto mr-auto">
+                        <div class="row">
+                            <div class="col-md-3 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-3</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-3 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-3</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-3 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-3</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                            <div class="col-md-3 ml-auto mr-auto">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title">col-3</h5>
+                                    <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+        
+        
+                <!-- col-10 / col-2 -->
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-10</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                    <div class="col-lg-2">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-2</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+        
+        
+        
+                <!-- col-9 / col-3 -->
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-9</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-3</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+        
+        
+                <!-- col-8 / col-4 -->
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-8</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-4</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+        
+        
+                <!-- col-7 / col-5 -->
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-7</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+        
+                    <div class="col-lg-5">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-5</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+        
+        
+                <!-- col-12 -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-6</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+        
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                            <h5 class="card-title">col-6</h5>
+                            <p>This is an example page with no content. You can use it as a starter for your custom pages.</p>
+                            </div>
+                        </div>
+                    </div> <!-- end col -->
+                </div> <!-- end row -->
+            </div>
+        </section>
+
+
+
+
+            <!-- Resultados búsqueda Artículos - tabla -->
+            <section class="pb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 mx-auto">
+                            <!-- Artículos encontrados -->
+                            {% if resultado_articulos %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="h2 card-title">Lista de Artículos para la búsqueda: "{{ termino_busqueda }}" [{{ numero_articulos }}]</p>
+                            
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Artículos</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in resultado_articulos %}
+                                                    <tr>
+                                                        <td> 
+                                                        {% if item.imagen %}
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="text-center">
+                                                                        <img class="img img-thumbnail" src="{{ item.imagen.url }}" width="75" alt="{{ item.nombre }}" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <p>
+                                                                        <a href="{% url 'articulo' item.slug %}"> <strong>{{ item.nombre }}</strong></a> <br />
+                                                                        {% if item.fecha %}
+                                                                            <span class="badge badge-default">{{ item.fecha }}</span> <br />
+                                                                        {% endif %}
+                                                                        {% if item.fk_categoria %}
+                                                                            <span class="badge badge-info">{{ item.fk_categoria }}</span>
+                                                                        {% endif %}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <p>
+                                                                <a href="{% url 'articulo' item.slug %}"> <strong>{{ item.nombre }}</strong></a> <br />
+                                                                {% if item.fecha %}
+                                                                    <span class="badge badge-default">{{ item.fecha }}</span> <br />
+                                                                {% endif %}
+                                                                {% if item.fk_categoria %}
+                                                                    <span class="badge badge-info">{{ item.fk_categoria }}</span>
+                                                                {% endif %}
+                                                            </p>
+                                                        {% endif %}
+                                    
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="alert alert-warning fade show" role="alert">
+                                    No existen artículos relacionados con "{{ termino_busqueda }}". <br />
+                                    Ingrese otro término de búsqueda.
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resultados búsqueda Artículos - divs -->
+            <section class="pb-3">
+                <div class="container">
+
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+
+                            <h3 class="resume-title text-secondary fw-bolder mb-4">Lista de Artículos para la búsqueda: "{{ termino_busqueda }}" [{{ numero_articulos }}]</h3>
+
+                            {% if resultado_articulos %}
+                                {% for item in resultado_articulos %}
+                                <!-- Actividad -->
+                                <div class="card mb-3 rounded-4">
+                                    <div class="row g-0">
+                                        <div class="col-md-3">
+                                            <div class="card-text text-center my-2 mx-2">
+                                                {% if item.imagen %}
+                                                    <a href="{% url 'articulo' item.slug %}">
+                                                        <img class="img img-thumbnail card-img-top img-fluid shadow" src="{{ item.imagen.url }}" alt="{{ item.titulo }}" />
+                                                    </a>
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="card-body small">
+                                                <h3 class="card-title">
+                                                    <a href="{% url 'articulo' item.slug %}">
+                                                        {{ item.nombre }}
+                                                    </a>
+                                                </h3>
+
+                                                {% if item.fk_area_interes.all %}
+                                                    <div class="mb-1 text-muted"><strong>Áreas de interés:</strong> 
+                                                        {% for area in item.fk_area_interes.all %}
+                                                            <span class="badge badge-success rounded-pill">
+                                                                {{ area }}
+                                                            </span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if item.fk_tecnologias.all %}
+                                                    <div class="mb-1 text-muted"><strong>Tecnologías:</strong> 
+                                                        {% for tecnologia in item.fk_tecnologias.all %}
+                                                            <span class="badge badge-warning rounded-pill">
+                                                            {{ tecnologia }} 
+                                                            </span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+
+                                                {% if item.fk_software.all %}
+                                                    <div class="mb-1 text-muted"><strong>Software:</strong> 
+                                                        {% for software in item.fk_software.all %}
+                                                            <span class="badge badge-rose rounded-pill">
+                                                                {{ software }}
+                                                            </span>
+                                                        {% endfor %}
+                                                    </div>
+                                                {% endif %}
+
+                                                <hr />
+
+                                                
+                                                {% if item.resumen %}
+                                                    <div class="card-text text-muted">
+                                                        {{ item.resumen|safe }}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                            <div class="alert alert-danger rounded-4 shadow px-4">
+                                No existen artículos relacionados con "{{ termino_busqueda }}". <br />
+                                Ingrese otro término de búsqueda.
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

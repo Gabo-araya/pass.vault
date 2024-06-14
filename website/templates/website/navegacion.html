@@ -1,0 +1,27 @@
+{% load static %}
+
+    <!-- Navigation-->
+    <!--nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bg-gradient" id="mainNav"-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top bg-gradient-primary-to-secondary text-white" id="mainNav">
+        <div class="container px-4">
+            
+            <a class="navbar-brand" href="{% url 'inicio'%}">
+                <img src="{% static 'website/img/logo.png' %}" alt="Password Manager" width="50" class="img-fluid rounded-circle">
+                <span class="mx-1">
+                    <strong>
+                        Password Manager
+                    </strong>
+                </span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto text-white">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'inicio'%}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contacto'%}">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'entrar'%}">Entrar</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
