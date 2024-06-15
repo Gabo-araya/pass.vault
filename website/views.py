@@ -69,17 +69,17 @@ def blank(request):
 
 
 
-def entrar(request):
-    '''Muesta ejemplo temporal de formulario'''
+# def entrar(request):
+#     '''Muesta ejemplo temporal de formulario'''
 
-    context = {
-        'page' : 'Entrar - Ejemplo de Form de contraseña',
-        'info_persona': info_header_persona(request),
-        'info_configuracion': info_configuracion(),
-        'url_actual': request.path,
-    }
+#     context = {
+#         'page' : 'Entrar - Ejemplo de Form de contraseña',
+#         'info_persona': info_header_persona(request),
+#         'info_configuracion': info_configuracion(),
+#         'url_actual': request.path,
+#     }
 
-    return render(request, "website/blank.html", context)
+#     return render(request, "website/blank.html", context)
 
 
 
