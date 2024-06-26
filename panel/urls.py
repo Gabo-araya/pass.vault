@@ -24,8 +24,8 @@ urlpatterns = [
     # path('editar_perfil/', panel.views.editar_perfil, name='editar_perfil'),
 
     # Configuración
-    path('ver_configuracion/', panel.views.ver_configuracion, name='ver_configuracion'),
-    path('editar_configuracion/', panel.views.editar_configuracion, name='editar_configuracion'),
+    # path('ver_configuracion/', panel.views.ver_configuracion, name='ver_configuracion'),
+    # path('editar_configuracion/', panel.views.editar_configuracion, name='editar_configuracion'),
 
     # Búsquedas
     path('resultados_busqueda/', panel.views.resultados_busqueda, name='resultados_busqueda'),

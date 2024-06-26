@@ -24,7 +24,7 @@ _Esta es una lista de los paquetes que deben estar instalados previamente:_
 	- [Ayuda - https://atareao.es/como/entorno-virtual-en-python-como-y-para-que/](https://atareao.es/como/entorno-virtual-en-python-como-y-para-que/)
 
 
-## Instalación pre-requisitos [Windows] 🔧
+## Instalación pre-requisitos - Windows 🔧
 
 Muchas veces tenemos ese problema común de no poder instalar ciertas librerías o realizar configuraciones para poder desarrollar en Windows para Web y es por ello que en éste tutorial vamos a ver los pasos para instalar Python y configurarlo con Pip y Virtualenv para así poder empezar a desarrollar aplicaciones basadas en éste lenguaje e instalar Django para crear aplicaciones web. [Ver video -> **https://www.youtube.com/watch?v=sG7Q-r_SZhA**](https://www.youtube.com/watch?v=sG7Q-r_SZhA)
 
@@ -53,7 +53,7 @@ Muchas veces tenemos ese problema común de no poder instalar ciertas librerías
 	- `deactivate`
 
 
-## Instalación pre-requisitos [GNU/Linux] 🔧
+## Instalación pre-requisitos - GNU/Linux 🔧
 
 1. Ejecutamos Pip para verificar que esté instalado correctamente
 	- `pip3 --version`

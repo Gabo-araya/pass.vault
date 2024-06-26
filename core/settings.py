@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-kllmn@xdkpzn(e0swsmz!0#c(uiid%d$zgltwo61qb174h46-@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['passman.gaboaraya.cl','127.0.0.1']
 
 
 # Application definition
@@ -36,11 +36,22 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic', #para servir archivos estáticos
     'django.contrib.staticfiles',
+
+    # Third party apps
+    'ckeditor',
+
+    # Apps
+    'website.apps.WebsiteConfig',
+
+    # Backend
+    # 'panel.apps.PanelConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #whitenoise para staticfiles
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -103,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
@@ -117,7 +128,34 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static', #os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles-cdn'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#STATIC_ROOT = '/home/gaboaraya/gaboaraya/static/'
+#STATIC_ROOT = '/home/gaboaraya/gaboaraya/static_files/'
+#STATIC_ROOT = '/home/gaboaraya/gaboaraya/archivos/'
+#STATIC_ROOT = os.path.join(BASE_DIR, 'archivos', 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#os.makedirs(STATIC_ROOT, exist_ok=True)
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+

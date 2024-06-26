@@ -1,5 +1,5 @@
 # from panel.models import Persona_Model, Configuracion_Model
-from panel.models import Persona_Model
+from website.models import Persona_Model
 
 #=======================================================================================================================================
 # Vista de inicio

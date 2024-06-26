@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, request
 from django.urls import reverse
+from urllib.parse import urlencode
 from django.db.models import Q
+from django.template.defaultfilters import slugify
 
 # Importar modelos desde apps de backend
 # from panel.models import Ahora_Model, Servicio_Model, Proyecto_Model, Categoria_Proyecto_Model
@@ -12,7 +14,9 @@ from django.db.models import Q
 # Importación de forms desde apps de backend
 from website.forms import Mensaje_Contacto_Form, Frontend_Search_Form
 
-from panel.utils import info_header_persona, info_configuracion
+
+
+from website.utils import info_header_persona
 
 
 #=======================================================================================================================================
@@ -36,7 +40,7 @@ def inicio(request):
     context = {
         'page' : 'Inicio',
         'info_persona': info_header_persona(request),
-        'info_configuracion': info_configuracion(),
+        #'info_configuracion': info_configuracion(),
         'url_actual': request.path,
         # 'page_content': "page_content",
         # 'proyecto_destacado': proyecto_destacado,
@@ -57,7 +61,7 @@ def blank(request):
     context = {
         'page' : 'Blank',
         'info_persona': info_header_persona(request),
-        'info_configuracion': info_configuracion(),
+        #'info_configuracion': info_configuracion(),
         'url_actual': request.path,
         # 'page_content': page_content,
         # 'object_list': articulos_list,
@@ -225,7 +229,7 @@ def contacto(request):
     context = {
         'page' : 'Contacto',
         'info_persona': info_header_persona(request),
-        'info_configuracion': info_configuracion(),
+        #'info_configuracion': info_configuracion(),
         'url_actual': request.path,
         'page_content' : page_content,
         'success_message' : success_message,
@@ -241,7 +245,7 @@ def gracias(request):
     context = {
         'page' : 'Gracias',
         'info_persona': info_header_persona(request),
-        'info_configuracion': info_configuracion(),
+        #'info_configuracion': info_configuracion(),
         'url_actual': request.path,
         # 'page_content' : page_content,
     }

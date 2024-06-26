@@ -225,3 +225,42 @@ El salt personalizado que crea cada usuario desde su perfil se debe agregar al p
 
 
 
+----
+
+
+# Software instalado
+
+## Instalar paquetes pip
+
+- pip install Pillow
+- pip install whitenoise
+- pip install django-ckeditor
+
+
+
+- pip3 freeze > requirements.txt
+
+
+## Comandos Django
+
+Activar env
+    `source /home/gabo/django_proy/pass/env/bin/activate`
+
+Crear superusuario
+    `python3 manage.py createsuperuser`
+
+Realizar migraciones
+    `python3 manage.py makemigrations`
+    `python3 manage.py migrate`
+
+Obtener archivos estáticos
+    `python3 manage.py collectstatic`
+
+Iniciar el servidor
+    `python3 manage.py runserver`
+
+
+
+
+
+
