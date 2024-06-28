@@ -5,16 +5,9 @@ from urllib.parse import urlencode
 from django.db.models import Q
 from django.template.defaultfilters import slugify
 
-# Importar modelos desde apps de backend
-# from panel.models import Ahora_Model, Servicio_Model, Proyecto_Model, Categoria_Proyecto_Model
-# from panel.models import Actividad_Academica_Model, Actividad_Laboral_Model, Area_Interes_Model, Tecnologia_Model, Software_Model
-# from panel.models import Pagina_Model, Articulo_Model, Categoria_Model, Etapa_Model
-# from panel.models import Mensaje_Contacto_Model, Frontend_Search_Model, Backend_Search_Model, Configuracion_Model
-
-# Importación de forms desde apps de backend
-from website.forms import Mensaje_Contacto_Form, Frontend_Search_Form
-
-
+# Importación de modelos
+from website.models import  Persona_Model, Categoria_Password_Model, Password_Model, Mensaje_Contacto_Model, Buscar_Password_Model
+from website.models import Articulo_Model, Articulo_Categoria_Model, Articulo_Imagen_Model, Articulo_Archivo_Model, Accion_Model
 
 from website.utils import info_header_persona
 
