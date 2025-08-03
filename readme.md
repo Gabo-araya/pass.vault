@@ -32,7 +32,7 @@ Muchas veces tenemos ese problema común de no poder instalar ciertas librerías
 	- [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
 2. Agregaremos Python a las variables de entorno de nuestro sistema si es que no se agregaron durante la instalación para que así podamos ejecutarlo desde la terminal `/cmd`
-	- `C:\Python34 y C:\Python34\Scripts`
+	- `C:\Python34 y C:\Python310\Scripts`
 
 3. Ejecutamos Pip para verificar que esté instalado correctamente
 	- `pip --version`
@@ -96,7 +96,7 @@ Seguir los siguientes pasos para la instalación local.
 4. Crear superusuario
 	- `python3 manage.py createsuperuser`
 	- Si se usa Cpanel es necesario indicar el encoding primero vía terminal: 
-		-`export PYTHONIOENCODING="UTF-8"; python3.6 manage.py createsuperuser`
+		-`export PYTHONIOENCODING="UTF-8"; python3.10 manage.py createsuperuser`
 
 5. Obtener archivos estáticos
 	- `python3 manage.py collectstatic`
@@ -138,6 +138,7 @@ URL de acceso: [http://localhost:8000/panel/](http://localhost:8000/panel/)
 	- Se pueden realizar acciones de creación, ver detalle, modificación, eliminación.
 	- Se puede ingresar un nuevo password generado aleatoriamente o uno nuevo manualmente.
 	- Se puede agregar el password en una categoría
+	- Se puede compartir el password con otros usuarios de la plataforma (estos passwords reciben un flag "compartido" y se debe poder escoger los usuarios a los que se compartirá)
 	- Se puede agregar una descripción y una URL del lugar donde debe ir el password
 
 4. Sección **BUSCADOR**
@@ -165,6 +166,8 @@ URL de acceso: [http://localhost:8000/panel/](http://localhost:8000/panel/)
 		    - Eliminar una categoría (se eliminan todos los passwords de esa categoría)
 	    - Password
 		    - Crear un nuevo password
+			- Modificar un password
+			- Compartir un password
 		    - Eliminar un password
 		- Perfil
 			- Modificar perfil (nombre, género e imagen)
